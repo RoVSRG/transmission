@@ -60,7 +60,7 @@ function StateReplication.new(replicaName)
 			resolve(get:InvokeServer())
 		end)
 		
-		getStatePromise:andThen(function(state, h)
+		getStatePromise:andThen(function(state)
 			store:SetState(state)		
 		end)
 		
@@ -70,11 +70,11 @@ function StateReplication.new(replicaName)
 		end)
 	end
 	
-	function replica.connect(store, xd)
+	function replica.connect(store)
 		if isServer then
 			return connectServer(store)
 		else
-			return connectClient(store, xd)
+			return connectClient(store)
 		end
 	end
 	
